@@ -11,6 +11,8 @@ public class App {
         String host = args[0];
         String user = args[1];
         String password = promptPassword("Contraseña para el usuario " + user + ": ");
+
+        MySQLConnector connector = new MySQLConnector(host, user, password);
     }
 
     private static String promptPassword(String prompt) {
