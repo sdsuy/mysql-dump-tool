@@ -14,6 +14,7 @@ public class App {
         String password = promptPassword("Contraseña para el usuario " + user + ": ");
 
         MySQLConnector connector = new MySQLConnector(host, user, password);
+        MySQLDumper dumper = new MySQLDumper(host, user, password);
 
         try {
             connector.connect();
