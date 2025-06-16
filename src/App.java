@@ -42,6 +42,10 @@ public class App {
                 return;
             }
 
+            String dbName = databases.get(choice - 1);
+            System.out.println("Generando dump de '" + dbName + "'...");
+            dumper.dumpDatabase(dbName);
+
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         } finally {
