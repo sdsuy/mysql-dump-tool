@@ -1,4 +1,5 @@
 import java.io.Console;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -18,6 +19,27 @@ public class App {
             connector.connect();
 
             System.out.println("Versión del servidor MySQL: " + connector.getServerVersion());
+
+            List<String> databases = connector.getAvailableDatabases();
+            if (databases.isEmpty()) {
+                System.out.println("No hay bases de datos disponibles.");
+                return;
+            }
+
+            System.out.println("\nBases de datos disponibles:");
+            for (int i = 0; i < databases.size(); i++) {
+                System.out.println((i + 1) + ". " + databases.get(i));
+            }
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Seleccione una base de datos (número): ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // limpiar buffer
+
+            if (choice < 1 || choice > databases.size()) {
+                System.out.println("Selección inválida.");
+                return;
+            }
 
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
